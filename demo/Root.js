@@ -34,23 +34,18 @@ import CascadingHoverMenusHooks from './examples/CascadingHoverMenus.hooks'
 import CascadingHoverMenusHooksCode from '!!raw-loader!./examples/CascadingHoverMenus.hooks'
 import Demo from './Demo'
 import Typography from '@mui/material/Typography'
-import { withStyles } from '@mui/styles'
-import { StyledEngineProvider } from '@mui/material/styles'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import {
+  createTheme,
+  StyledEngineProvider,
+  ThemeProvider,
+} from '@mui/material/styles'
 
 const theme = createTheme()
 
-const styles = {
-  root: {
-    margin: '0 auto',
-    maxWidth: 800,
-  },
-}
-
-const Root = ({ classes }) => (
+const Root = () => (
   <StyledEngineProvider>
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
+      <div>
         <Typography variant="h3">material-ui-popup-state demos</Typography>
         <Demo
           title="Left Click to open Menu"
@@ -125,4 +120,4 @@ const Root = ({ classes }) => (
   </StyledEngineProvider>
 )
 
-export default withStyles(styles)(Root)
+export default Root

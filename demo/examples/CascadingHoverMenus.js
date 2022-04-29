@@ -1,21 +1,17 @@
 import * as React from 'react'
-import { makeStyles } from '@mui/styles'
 import MenuItem from '@mui/material/MenuItem'
 import ChevronRight from '@mui/icons-material/ChevronRight'
 import Button from '@mui/material/Button'
 import PopupState, { bindHover, bindMenu } from 'material-ui-popup-state'
 import HoverMenu from 'material-ui-popup-state/HoverMenu'
+import { styled } from '@mui/material'
 
-const useCascadingMenuStyles = makeStyles((theme) => ({
-  submenu: {
-    marginTop: theme.spacing(-1),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  moreArrow: {
-    marginRight: theme.spacing(-1),
-  },
+const SpanTitle = styled('span')(({ theme }) => ({
+  flexGrow: 1,
+}))
+
+const ChevronRightMoreArrow = styled(ChevronRight)(({ theme }) => ({
+  marginRight: theme.spacing(-1),
 }))
 
 const CascadingContext = React.createContext({
@@ -38,7 +34,6 @@ function CascadingMenuItem({ onClick, ...props }) {
 }
 
 function CascadingSubmenu({ title, popupId, ...props }) {
-  const classes = useCascadingMenuStyles()
   const { parentPopupState } = React.useContext(CascadingContext)
   return (
     <PopupState
@@ -50,12 +45,12 @@ function CascadingSubmenu({ title, popupId, ...props }) {
       {(popupState) => (
         <React.Fragment>
           <MenuItem {...bindHover(popupState)}>
-            <span className={classes.title}>{title}</span>
-            <ChevronRight className={classes.moreArrow} />
+            <SpanTitle>{title}</SpanTitle>
+            <ChevronRightMoreArrow />
           </MenuItem>
           <CascadingMenu
             {...props}
-            classes={{ ...props.classes, paper: classes.submenu }}
+            // classes={{ ...props.classes, paper: classes.submenu }}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'left' }}
             popupState={popupState}
