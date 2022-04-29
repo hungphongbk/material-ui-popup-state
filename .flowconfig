@@ -5,6 +5,7 @@
 <PROJECT_ROOT>/lib/.*
 <PROJECT_ROOT>/node_modules/.*/fbjs/.*
 <PROJECT_ROOT>/node_modules/fbjs/.*
+<PROJECT_ROOT>/node_modules/resolve/test/.*
 <PROJECT_ROOT>/node_modules/.*/config-chain/.*
 
 [include]
