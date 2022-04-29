@@ -13,9 +13,8 @@ jobs:
       - run:
           name: Setup NPM Token
           command: |
-            yarn config set registry "https://registry.npmjs.org/"
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-            echo "registry=https://registry.npmjs.org/" >> .npmrc
+            npm config set registry "https://registry.npmjs.org/"
+            echo "@hungphongbk:registry=https://npm.pkg.github.com" > .npmrc
 
       # https://github.com/atlassian/react-beautiful-dnd/issues/1007#issuecomment-446415426
       - run:
@@ -24,14 +23,11 @@ jobs:
 
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: npm install
 
       - run:
           name: build
-          command: yarn run prepublishOnly
-      - run:
-          name: upload test coverage
-          command: yarn codecov
+          command: npm run prepublishOnly
       - run:
           name: release
-          command: yarn run semantic-release
+          command: npm run semantic-release
